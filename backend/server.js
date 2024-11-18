@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
+import router from "./routes/walletRoutes.js";
+import locationrouter from "./routes/savedLocationRoutes.js";
 
 dotenv.config();
 
@@ -12,6 +14,8 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use('/wallet', router);
+app.use("/savedLocations",locationrouter)
 
 // Connect Database
 connectDB();
