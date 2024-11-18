@@ -68,6 +68,14 @@ const Home = () => {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
+    map.on('focus', function() {
+      map.scrollWheelZoom.enable();
+    });
+    
+    // Disable scrollWheelZoom when the map loses focus
+    map.on('blur', function() {
+      map.scrollWheelZoom.disable();
+    });
 
     const customIcon = L.icon({
       iconUrl: "map_icon.png",
