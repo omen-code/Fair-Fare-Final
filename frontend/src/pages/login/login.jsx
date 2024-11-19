@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import { registerUser, loginUser } from "./services/api";
 
 const Login = () => {
   const [section, setSection] = useState("login");
@@ -31,7 +32,7 @@ const Login = () => {
     return re.test(mobile);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const { loginInput, loginPassword } = formData;
 
@@ -46,11 +47,18 @@ const Login = () => {
     }
 
     setErrorMessage("");
-    console.log("Login successful");
-    // Add login logic here
+
+    try {
+      const response = await loginUser({ email: loginInput, password: loginPassword });
+      localStorage.setItem('user', JSON.stringify(response));
+      console.log("Login successful", response);
+      // Redirect to another page or show user dashboard
+    } catch (error) {
+      setErrorMessage(error);
+    }
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     const { signupName, signupEmail, signupMobile, signupPassword } = formData;
 
@@ -75,8 +83,14 @@ const Login = () => {
     }
 
     setErrorMessage("");
-    console.log("Signup successful");
-    // Add signup logic here
+
+    try {
+      const response = await registerUser({ name: signupName, email: signupEmail, mobile: signupMobile, password: signupPassword });
+      console.log("Signup successful", response);
+      // Redirect to login or another page
+    } catch (error) {
+      setErrorMessage(error);
+    }
   };
 
   const handleForgotPassword = (e) => {

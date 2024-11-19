@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './wallet.css';
 
 const Wallet = () => {
@@ -6,10 +7,22 @@ const Wallet = () => {
   const [amount, setAmount] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const userId = 'some-user-id'; // Replace with the actual user ID
 
-  const updateBalance = (newAmount) => {
-    setBalance(newAmount);
-  };
+  useEffect(() => {
+    // Fetch wallet data when the component mounts
+    const fetchWalletData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/wallet/${userId}`);
+        setBalance(response.data.balance);
+        setTransactionHistory(response.data.transactions);
+      } catch (error) {
+        console.error('Error fetching wallet data:', error);
+      }
+    };
+
+    fetchWalletData();
+  }, [userId]);
 
   const openPaymentModal = () => {
     const parsedAmount = parseFloat(amount);
@@ -24,25 +37,30 @@ const Wallet = () => {
     setIsModalOpen(false);
   };
 
-  const completePayment = () => {
+  const completePayment = async () => {
     const parsedAmount = parseFloat(amount);
     if (isNaN(parsedAmount) || parsedAmount <= 0) {
       alert("Invalid payment amount!");
       return;
     }
 
-    // Update balance
-    setBalance((prevBalance) => prevBalance + parsedAmount);
+    try {
+      const response = await axios.post(`http://localhost:3000/wallet/${userId}/transaction`, {
+        type: 'credit',
+        amount: parsedAmount,
+      });
 
-    // Add transaction to history
-    setTransactionHistory((prevHistory) => [
-      ...prevHistory,
-      `Added ₹${parsedAmount.toFixed(2)} via QR Payment`,
-    ]);
+      // Update state with the new balance and transaction history
+      setBalance(response.data.balance);
+      setTransactionHistory(response.data.transactions);
 
-    // Reset input and close modal
-    setAmount('');
-    closeModal();
+      // Reset input and close modal
+      setAmount('');
+      closeModal();
+    } catch (error) {
+      console.error('Error completing payment:', error);
+      alert('Payment failed. Please try again.');
+    }
   };
 
   return (
@@ -77,7 +95,9 @@ const Wallet = () => {
               <h2><u>Transaction History</u></h2>
               <ul id="transaction-history">
                 {transactionHistory.map((transaction, index) => (
-                  <li key={index}>{transaction}</li>
+                  <li key={index}>
+                    {transaction.type === 'credit' ? 'Added' : 'Spent'} ₹{transaction.amount.toFixed(2)} on {new Date(transaction.date).toLocaleString()}
+                  </li>
                 ))}
               </ul>
             </div>
