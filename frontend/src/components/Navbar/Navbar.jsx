@@ -2,31 +2,31 @@ import React from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
-    const openMenu = () => {
-        document.getElementById("sideMenu").style.left = "0";
-      };
-    
-      const closeMenu = () => {
-        document.getElementById("sideMenu").style.left = "-100%";
-      };
-  return (
-    <div>
-    <header className="half-ellipse-header">
-      <div className="menu-icon" onClick={openMenu}>
-        &#9776;
-      </div>
-      <div className="logo">
-        <h2>FairFare</h2>
-        <p>Your Favourite Riding Partner</p>
-      </div>
-      <nav className="nav-links">
-        <a href="profile_html.html">Profile</a>
-        <a href="wallet.html">Wallet</a>
-        <a href="login_html.html">Logout</a>
-      </nav>
-    </header>
+  const openMenu = () => {
+    document.getElementById("sideMenu").style.left = "0";
+  };
 
-    <div className="side-menu" id="sideMenu">
+  const closeMenu = () => {
+    document.getElementById("sideMenu").style.left = "-100%";
+  };
+  return (
+    <div className="nav-main">
+      <header className="half-ellipse-header">
+        <div className="menu-icon" onClick={openMenu}>
+          &#9776;
+        </div>
+        <div className="logo">
+          <h2>FairFare</h2>
+        </div>
+
+        <nav className="nav-links">
+          <a href="profile_html.html">Profile</a>
+          <a href="wallet.html">Wallet</a>
+          <a href="login_html.html">Logout</a>
+        </nav>
+      </header>
+      <p>Your Favourite Riding Partner</p>
+      <div className="side-menu" id="sideMenu">
         <a href="#" onClick={closeMenu}>
           &#8592;Back
         </a>
@@ -37,7 +37,6 @@ const Navbar = () => {
         <a href="login_html.html">Logout</a>
       </div>
     </div>
-    
   );
 };
 
