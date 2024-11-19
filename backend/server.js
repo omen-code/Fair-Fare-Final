@@ -17,6 +17,7 @@ app.use(cors());
 app.use('/wallet', router);
 app.use("/savedLocations",locationrouter)
 
+
 // Connect Database
 connectDB();
 
