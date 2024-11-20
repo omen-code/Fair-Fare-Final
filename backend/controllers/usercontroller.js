@@ -9,7 +9,7 @@ const generateToken = (id) => {
 };
 
 // Register a New User
-export const registerUser = async (req, res) => {
+ const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -35,7 +35,7 @@ export const registerUser = async (req, res) => {
 };
 
 // Login User
-export const loginUser = async (req, res) => {
+ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
