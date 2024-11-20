@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import './Profile.css';
+import React, { useState } from "react";
+import "./Profile.css";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    mobile: '1234567890',
-    gender: 'Male',
-    emergency: '1234567890',
+    name: "John Doe",
+    email: "johndoe@example.com",
+    mobile: "1234567890",
+    gender: "Male",
+    emergency: "1234567890",
   });
   const [selectedFile, setSelectedFile] = useState(null);
-  const [profilePic, setProfilePic] = useState('user_icon.png');
-  const [message, setMessage] = useState('');
+  const [profilePic, setProfilePic] = useState("user_icon.png");
+  const [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
-    setMessage('');
+    setMessage("");
   };
 
   const handleChange = (e) => {
@@ -31,7 +31,7 @@ const Profile = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    setMessage('Profile updated successfully!');
+    setMessage("Profile updated successfully!");
   };
 
   const handleFileChange = (e) => {
@@ -51,7 +51,7 @@ const Profile = () => {
       const newProfilePicURL = URL.createObjectURL(selectedFile);
       setProfilePic(newProfilePicURL);
       setShowModal(false);
-      setMessage('Profile picture updated successfully!');
+      setMessage("Profile picture updated successfully!");
     }
   };
 
@@ -128,9 +128,9 @@ const Profile = () => {
                       type="radio"
                       name="gender"
                       value="Male"
-                      checked={profile.gender === 'Male'}
+                      checked={profile.gender === "Male"}
                       onChange={handleGenderChange}
-                    />{' '}
+                    />{" "}
                     Male
                   </label>
                   <label>
@@ -138,9 +138,9 @@ const Profile = () => {
                       type="radio"
                       name="gender"
                       value="Female"
-                      checked={profile.gender === 'Female'}
+                      checked={profile.gender === "Female"}
                       onChange={handleGenderChange}
-                    />{' '}
+                    />{" "}
                     Female
                   </label>
                   <label>
@@ -148,9 +148,9 @@ const Profile = () => {
                       type="radio"
                       name="gender"
                       value="Other"
-                      checked={profile.gender === 'Other'}
+                      checked={profile.gender === "Other"}
                       onChange={handleGenderChange}
-                    />{' '}
+                    />{" "}
                     Other
                   </label>
                 </div>
@@ -177,19 +177,23 @@ const Profile = () => {
               <button
                 id="edit-pic-btn"
                 className="btn"
-                style={{ display: isEditing ? 'inline' : 'none' }}
-                onClick={() => document.getElementById('fileInput').click()}
+                style={{ display: isEditing ? "inline" : "none" }}
+                onClick={() => document.getElementById("fileInput").click()}
               >
                 Edit Profile Picture
               </button>
-              <button id="edit-btn" className="btn" onClick={isEditing ? handleSave : handleEdit}>
-                {isEditing ? 'Save' : 'Edit'}
+              <button
+                id="edit-btn"
+                className="btn"
+                onClick={isEditing ? handleSave : handleEdit}
+              >
+                {isEditing ? "Save" : "Edit"}
               </button>
               <input
                 type="file"
                 id="fileInput"
                 accept="image/*"
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
                 onChange={handleFileChange}
               />
             </div>
@@ -207,9 +211,17 @@ const Profile = () => {
               &times;
             </span>
             <h3>Confirm Profile Picture</h3>
-            <img id="preview" src={URL.createObjectURL(selectedFile)} alt="Profile Preview" />
+            <img
+              id="preview"
+              src={URL.createObjectURL(selectedFile)}
+              alt="Profile Preview"
+            />
             <div className="modal-buttons">
-              <button id="confirm-btn" className="btn" onClick={handleConfirmPic}>
+              <button
+                id="confirm-btn"
+                className="btn"
+                onClick={handleConfirmPic}
+              >
                 Confirm
               </button>
               <button id="cancel-btn" className="btn" onClick={handleCancelPic}>
@@ -219,7 +231,10 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <br /><br /><br /><br />
+      <br />
+      <br />
+      <br />
+      <br />
       <footer>
         <div className="foot">
           <hr color="yellow" />
@@ -232,7 +247,9 @@ const Profile = () => {
           <img src="facebook_logo.png" alt="Facebook" />
           <img src="x_logo.png" alt="X" />
         </div>
-        <a href="t&c.html" alt="t&c">Terms & Conditions</a>
+        <a href="t&c.html" alt="t&c">
+          Terms & Conditions
+        </a>
         <p>&copy; 2024 FairFare. All Rights Reserved.</p>
         <br />
       </footer>

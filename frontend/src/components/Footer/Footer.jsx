@@ -1,5 +1,4 @@
- 
- import React from "react";
+import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
@@ -9,17 +8,14 @@ const Footer = () => {
       <h2>FairFare</h2>
       <p>Contact Us Online:</p>
       <div className="social-icons">
-        <a href="https://www.instagram.com/fair_fare.official/profilecard/" >Instagram
-          
+        <a href="https://www.instagram.com/fair_fare.official/profilecard/">
+          Instagram
         </a>
-        <a href="#">
-          Facebook
-        </a>
-        <a href="#">
-          X
-        </a>
+        <a href="#">Facebook</a>
+        <a href="#">X</a>
       </div>
-      <a href="tc.html">Terms & Conditions</a>
+      <Link to="/terms-and-conditions">Terms & Conditions</Link>
+
       <p>&copy; 2024 FairFare. All Rights Reserved.</p>
     </footer>
   );

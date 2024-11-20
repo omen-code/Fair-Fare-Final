@@ -1,7 +1,7 @@
 import React from 'react';
 import './ffabout.css';
 
-const FFAbout = () => {
+const About us = () => {
   return (
     <div>
       <header>
@@ -86,4 +86,4 @@ const FFAbout = () => {
   );
 };
 
-export default FFAbout;
+export default About us;

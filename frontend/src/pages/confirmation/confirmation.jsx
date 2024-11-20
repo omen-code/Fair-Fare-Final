@@ -85,7 +85,6 @@ const Confirmation = () => {
         <div className="foot">
           <hr color="yellow" />
           <h2>FairFare</h2>
-
           Contact Us Online:
           <br />
           <a href="https://www.instagram.com/fair_fare.official">
@@ -104,6 +103,3 @@ const Confirmation = () => {
 };
 
 export default Confirmation;
-
-
-

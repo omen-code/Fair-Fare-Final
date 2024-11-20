@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "./map_icon.png";
 
 const Home = () => {
   const [showSavedLocations, setShowSavedLocations] = useState(false);
-
-
 
   const getRide = async () => {
     const pickup = document.getElementById("pickup").value;
@@ -68,12 +67,12 @@ const Home = () => {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
-    map.on('focus', function() {
+    map.on("focus", function () {
       map.scrollWheelZoom.enable();
     });
-    
+
     // Disable scrollWheelZoom when the map loses focus
-    map.on('blur', function() {
+    map.on("blur", function () {
       map.scrollWheelZoom.disable();
     });
 
@@ -92,10 +91,6 @@ const Home = () => {
 
   return (
     <div className="App">
-      
-
-      
-
       {!showSavedLocations && (
         <main className="main-content">
           <div className="input-container">

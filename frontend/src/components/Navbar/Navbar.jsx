@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from React Router
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -9,6 +10,7 @@ const Navbar = () => {
   const closeMenu = () => {
     document.getElementById("sideMenu").style.left = "-100%";
   };
+
   return (
     <div className="nav-main">
       <header className="half-ellipse-header">
@@ -20,9 +22,9 @@ const Navbar = () => {
         </div>
 
         <nav className="nav-links">
-          <a href="profile_html.html">Profile</a>
-          <a href="wallet.html">Wallet</a>
-          <a href="login_html.html">Logout</a>
+          <Link to="/profile">Profile</Link>
+          <Link to="/wallet">Wallet</Link>
+          <Link to="/login">Logout</Link>
         </nav>
       </header>
       <p>Your Favourite Riding Partner</p>
@@ -30,11 +32,10 @@ const Navbar = () => {
         <a href="#" onClick={closeMenu}>
           &#8592;Back
         </a>
-        <a onClick={() => setShowSavedLocations(true)}>Saved Locations</a>
-        <a href="wallet.html">Wallet</a>
-        <a href="settings.html">Settings</a>
-        <a href="fairfare_about.html">About Us</a>
-        <a href="login_html.html">Logout</a>
+        <Link to="/saved-locations">Saved Locations</Link>
+
+        <Link to="/about">About Us</Link>
+        <Link to="/login">Logout</Link>
       </div>
     </div>
   );
