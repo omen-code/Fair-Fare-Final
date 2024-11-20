@@ -3,13 +3,13 @@ import { getSavedLocations, addSavedLocation, deleteSavedLocation } from "../con
 
 const locationrouter = express.Router();
 
-// Get all saved locations for a user
-locationrouter.get("/:userId", getSavedLocations);
+// Route to get all saved locations (regardless of user)
+locationrouter.get("/get", getSavedLocations);
 
-// Add a new saved location
-locationrouter.post("/", addSavedLocation);
+// Route to add a new saved location
+locationrouter.post("/add", addSavedLocation);
 
-// Delete a saved location by ID
+// Route to delete a saved location by ID
 locationrouter.delete("/:id", deleteSavedLocation);
 
 export default locationrouter;

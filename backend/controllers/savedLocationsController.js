@@ -1,9 +1,9 @@
 import SavedLocation from "../models/savedlocations.js";
 
-// Get all saved locations for a user
+// Get all saved locations
 const getSavedLocations = async (req, res) => {
   try {
-    const locations = await SavedLocation.find({ userId: req.params.userId });
+    const locations = await SavedLocation.find();
     res.json(locations);
   } catch (error) {
     res.status(500).send(error.message);
@@ -12,13 +12,20 @@ const getSavedLocations = async (req, res) => {
 
 // Add a new saved location
 const addSavedLocation = async (req, res) => {
-  const { userId, name, address, latitude, longitude } = req.body;
+  const { name, address } = req.body;
+
+  // Validate required fields
+  if (!name || !address) {
+    console.error('Validation Error: Missing required fields');
+    return res.status(400).send('Name and address are required');
+  }
 
   try {
-    const newLocation = new SavedLocation({ userId, name, address, latitude, longitude });
+    const newLocation = new SavedLocation({ name, address });
     await newLocation.save();
     res.status(201).json(newLocation);
   } catch (error) {
+    console.error('Error saving new location:', error);
     res.status(500).send(error.message);
   }
 };
