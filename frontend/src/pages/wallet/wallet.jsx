@@ -7,13 +7,12 @@ const Wallet = () => {
   const [amount, setAmount] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
-  const userId = 'some-user-id'; // Replace with the actual user ID
 
   useEffect(() => {
     // Fetch wallet data when the component mounts
     const fetchWalletData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/wallet/${userId}`);
+        const response = await axios.get('http://localhost:4000/wallet');
         setBalance(response.data.balance);
         setTransactionHistory(response.data.transactions);
       } catch (error) {
@@ -22,7 +21,7 @@ const Wallet = () => {
     };
 
     fetchWalletData();
-  }, [userId]);
+  }, []);
 
   const openPaymentModal = () => {
     const parsedAmount = parseFloat(amount);
@@ -45,7 +44,7 @@ const Wallet = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:3000/wallet/${userId}/transaction`, {
+      const response = await axios.post('http://localhost:4000/wallet/transaction', {
         type: 'credit',
         amount: parsedAmount,
       });

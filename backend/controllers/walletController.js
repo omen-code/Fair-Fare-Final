@@ -2,7 +2,7 @@ import Wallet from "../models/wallet.js";
 
 const getWallet = async (req, res) => {
   try {
-    const wallet = await Wallet.findOne({ userId: req.params.userId });
+    const wallet = await Wallet.findOne({});
     if (!wallet) {
       return res.status(404).send('Wallet not found');
     }

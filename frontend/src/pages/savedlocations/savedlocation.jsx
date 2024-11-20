@@ -5,13 +5,12 @@ import './SavedLocations.css';
 const SavedLocations = () => {
   const [addressFields, setAddressFields] = useState([]);
   const [savedAddresses, setSavedAddresses] = useState([]);
-  const userId = 'some-user-id'; // Replace with the actual user ID
 
   useEffect(() => {
     // Fetch saved locations when the component mounts
     const fetchSavedLocations = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/savedLocations/${userId}`);
+        const response = await axios.get('http://localhost:4000/savedLocations');
         setSavedAddresses(response.data);
       } catch (error) {
         console.error('Error fetching saved locations:', error);
@@ -19,12 +18,12 @@ const SavedLocations = () => {
     };
 
     fetchSavedLocations();
-  }, [userId]);
+  }, []);
 
   const addAddressField = () => {
     setAddressFields([
       ...addressFields,
-      { id: Date.now(), name: "", address: "", latitude: 0, longitude: 0 },
+      { id: Date.now(), name: "", address: "" },
     ]);
   };
 
@@ -44,12 +43,9 @@ const SavedLocations = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:3000/savedLocations`, {
-        userId,
+      const response = await axios.post('http://localhost:4000/savedLocations', {
         name: field.name,
         address: field.address,
-        latitude: field.latitude,
-        longitude: field.longitude,
       });
 
       // Update state with the new saved location
@@ -65,7 +61,7 @@ const SavedLocations = () => {
     const location = savedAddresses[index];
 
     try {
-      await axios.delete(`http://localhost:3000/savedLocations/${location._id}`);
+      await axios.delete(`http://localhost:4000/savedLocations/${location._id}`);
       setSavedAddresses((prev) => prev.filter((_, i) => i !== index));
     } catch (error) {
       console.error('Error deleting address:', error);
@@ -97,22 +93,6 @@ const SavedLocations = () => {
                 value={field.address}
                 onChange={(e) =>
                   handleInputChange(field.id, "address", e.target.value)
-                }
-              />
-              <input
-                type="number"
-                placeholder="Latitude"
-                value={field.latitude}
-                onChange={(e) =>
-                  handleInputChange(field.id, "latitude", parseFloat(e.target.value))
-                }
-              />
-              <input
-                type="number"
-                placeholder="Longitude"
-                value={field.longitude}
-                onChange={(e) =>
-                  handleInputChange(field.id, "longitude", parseFloat(e.target.value))
                 }
               />
               <button onClick={() => saveAddress(field.id)}>&#10003;</button>
