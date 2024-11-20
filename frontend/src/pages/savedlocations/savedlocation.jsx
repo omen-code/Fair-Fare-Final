@@ -99,22 +99,8 @@ const SavedLocations = () => {
                   handleInputChange(field.id, "address", e.target.value)
                 }
               />
-              <input
-                type="number"
-                placeholder="Latitude"
-                value={field.latitude}
-                onChange={(e) =>
-                  handleInputChange(field.id, "latitude", parseFloat(e.target.value))
-                }
-              />
-              <input
-                type="number"
-                placeholder="Longitude"
-                value={field.longitude}
-                onChange={(e) =>
-                  handleInputChange(field.id, "longitude", parseFloat(e.target.value))
-                }
-              />
+              
+                
               <button onClick={() => saveAddress(field.id)}>&#10003;</button>
             </div>
           ))}
