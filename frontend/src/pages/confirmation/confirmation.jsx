@@ -80,24 +80,6 @@ const Confirmation = () => {
         {/* Comparison Section */}
         <div className="comparison-section"></div>
       </div>
-
-      <footer>
-        <div className="foot">
-          <hr color="yellow" />
-          <h2>FairFare</h2>
-          Contact Us Online:
-          <br />
-          <a href="https://www.instagram.com/fair_fare.official">
-            <img src="insta_logo.jpg" alt="Instagram" />
-          </a>
-          <img src="facebook_logo.png" alt="Facebook" />
-          <img src="x_logo.png" alt="X" />
-        </div>
-        <a href="t&c.html" alt="t&c">
-          Terms & Conditions
-        </a>
-        <p>&copy; 2024 FairFare. All Rights Reserved.</p>
-      </footer>
     </div>
   );
 };

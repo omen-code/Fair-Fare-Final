@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Login.css";
-import { registerUser, loginUser } from "./services/api";
+import axios from "axios";
 
 const Login = () => {
   const [section, setSection] = useState("login");
@@ -49,8 +49,11 @@ const Login = () => {
     setErrorMessage("");
 
     try {
-      const response = await loginUser({ email: loginInput, password: loginPassword });
-      localStorage.setItem('user', JSON.stringify(response));
+      const response = await {
+        email: loginInput,
+        password: loginPassword,
+      };
+      localStorage.setItem("user", JSON.stringify(response));
       console.log("Login successful", response);
       // Redirect to another page or show user dashboard
     } catch (error) {
@@ -85,7 +88,15 @@ const Login = () => {
     setErrorMessage("");
 
     try {
-      const response = await registerUser({ name: signupName, email: signupEmail, mobile: signupMobile, password: signupPassword });
+      const response = await axios.post(
+        "http://localhost:4000/api/user/register",
+        {
+          name: signupName,
+          email: signupEmail,
+          mobile: signupMobile,
+          password: signupPassword,
+        }
+      );
       console.log("Signup successful", response);
       // Redirect to login or another page
     } catch (error) {
