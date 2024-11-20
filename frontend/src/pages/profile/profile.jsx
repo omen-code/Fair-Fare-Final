@@ -61,19 +61,12 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="half-ellipse-header">
-        <div className="logo">
-          <a href="home.html">FairFare</a>
+      <main className="profile-main">
+        <div className="profile-head">
+          <h2>
+            <u>My Profile</u>
+          </h2>
         </div>
-        <div className="nav-links">
-          <a href="home.html">Home</a>
-          <a href="login_html.html">Logout</a>
-        </div>
-      </div>
-      <main>
-        <h2>
-          <u>My Profile</u>
-        </h2>
         <div className="profile-info">
           <img id="profile-pic" src={profilePic} alt="Profile Picture" />
           <div className="profile-details">
@@ -206,7 +199,7 @@ const Profile = () => {
 
       {showModal && (
         <div id="modal" className="modal">
-          <div className="modal-content">
+          <div className="profile-modal-content">
             <span className="close" id="close" onClick={handleCancelPic}>
               &times;
             </span>
@@ -216,7 +209,7 @@ const Profile = () => {
               src={URL.createObjectURL(selectedFile)}
               alt="Profile Preview"
             />
-            <div className="modal-buttons">
+            <div className="profile-modal-buttons">
               <button
                 id="confirm-btn"
                 className="btn"
@@ -231,28 +224,6 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <br />
-      <br />
-      <br />
-      <br />
-      <footer>
-        <div className="foot">
-          <hr color="yellow" />
-          <h2>FairFare</h2>
-          Contact Us Online:
-          <br />
-          <a href="https://www.instagram.com/fair_fare.official">
-            <img src="insta_logo.jpg" alt="Instagram" />
-          </a>
-          <img src="facebook_logo.png" alt="Facebook" />
-          <img src="x_logo.png" alt="X" />
-        </div>
-        <a href="t&c.html" alt="t&c">
-          Terms & Conditions
-        </a>
-        <p>&copy; 2024 FairFare. All Rights Reserved.</p>
-        <br />
-      </footer>
     </div>
   );
 };

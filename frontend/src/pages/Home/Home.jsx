@@ -3,9 +3,11 @@ import "./Home.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./map_icon.png";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [showSavedLocations, setShowSavedLocations] = useState(false);
+  const navigate = useNavigate(false);
 
   const getRide = async () => {
     const pickup = document.getElementById("pickup").value;
@@ -27,10 +29,7 @@ const Home = () => {
           const message = `Ride from ${pickup} to ${destination} is being processed.\nPickup Coordinates: ${pick_lat}, ${pick_long}\nDestination Coordinates: ${dst_lat}, ${dst_long}`;
           alert(message);
 
-          const url = `confirmation.html?pickup=${encodeURIComponent(
-            pickup
-          )}&destination=${encodeURIComponent(destination)}`;
-          window.location.href = url;
+          navigate("./confirmation");
         }
       } catch (error) {
         alert("Error processing your ride request.");
@@ -92,8 +91,8 @@ const Home = () => {
   return (
     <div className="App">
       {!showSavedLocations && (
-        <main className="main-content">
-          <div className="input-container">
+        <main className="home-main-content">
+          <div className="home-input-container">
             <label htmlFor="pickup">Enter Pickup Location:</label>
             <input
               type="text"
@@ -111,6 +110,7 @@ const Home = () => {
             <div id="map"></div>
           </div>
           <button onClick={getRide}>Get Ride</button>
+          <hr color="yellow" />
         </main>
       )}
     </div>

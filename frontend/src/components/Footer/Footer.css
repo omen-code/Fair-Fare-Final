@@ -3,10 +3,10 @@ footer {
   color: white;
   text-align: center;
   padding: 10px 0;
+  border-color: rgb(235, 235, 8);
 }
 
 footer h2 {
-  margin: 5px 0;
 }
 
 footer a {
@@ -15,7 +15,5 @@ footer a {
 }
 
 .social-icons a {
-  
-  padding-right: 25px;
-  padding-bottom: 10px;
+  padding-right: 5px;
 }
