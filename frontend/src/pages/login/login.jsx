@@ -141,11 +141,6 @@ const Login = () => {
 
   return (
     <div>
-      <header>
-        <div className="head">
-          <a href="home.html">FairFare</a>
-        </div>
-      </header>
       <div className="login-container">
         <div className="login-box">
           {section === "login" && (
@@ -326,12 +321,6 @@ const Login = () => {
           )}
         </div>
       </div>
-      <footer>
-        <div className="foot">
-          <hr color="white" />
-          <p>Powered by MERN Stack &copy; 2023</p>
-        </div>
-      </footer>
     </div>
   );
 };

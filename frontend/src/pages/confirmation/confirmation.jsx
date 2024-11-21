@@ -61,12 +61,6 @@ const Confirmation = () => {
 
   return (
     <div>
-      <header>
-        <a href="home.html">
-          <h2>FairFare</h2>
-        </a>
-      </header>
-
       <h3>Choose Your Preferred Ride</h3>
       <div className="container">
         {/* Transport Options Section */}
